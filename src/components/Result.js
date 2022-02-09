@@ -10,6 +10,7 @@ const Result = ({
   pressure,
   wind,
   date,
+  inputValue,
 }) => {
   let content = null;
 
@@ -32,10 +33,13 @@ const Result = ({
       </React.Fragment>
     );
   }
+  let result = error ? `Nie mamy w bazie ${city}` : content;
 
-  return (
-    <div className='result'>{error ? `Nie mamy w bazie ${city}` : content}</div>
-  );
+  if (inputValue.length === 0) {
+    result = '';
+  }
+
+  return <div className='result'>{result}</div>;
 };
 
 export default Result;

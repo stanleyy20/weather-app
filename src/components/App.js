@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Result from './Result';
 import Form from './Form';
@@ -15,14 +15,13 @@ const App = () => {
   const [temp, setTemp] = useState('');
   const [pressure, setPressure] = useState('');
   const [wind, setWind] = useState('');
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
 
-  const handleCitySubmit = (e) => {
-    e.preventDefault();
+  useEffect(() => {
     const API = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${APIKey}&units=metric`;
     fetch(API)
       .then((response) => {
@@ -48,16 +47,12 @@ const App = () => {
         setCity(inputValue);
         setError(true);
       });
-  };
+  }, [inputValue]);
 
   return (
     <div className='App'>
       Aplikacja pogodowa
-      <Form
-        value={inputValue}
-        change={handleInputChange}
-        submit={handleCitySubmit}
-      />
+      <Form value={inputValue} change={handleInputChange} />
       <Result
         date={date}
         city={city}
@@ -67,6 +62,7 @@ const App = () => {
         wind={wind}
         temp={temp}
         error={error}
+        inputValue={inputValue}
       />
     </div>
   );
