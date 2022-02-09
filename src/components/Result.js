@@ -1,13 +1,19 @@
 import React from 'react';
 import './Result.css';
 
-const Result = (props) => {
-  const { err, city, sunrise, sunset, temp, pressure, wind, date } =
-    props.weather;
-
+const Result = ({
+  error,
+  city,
+  sunrise,
+  sunset,
+  temp,
+  pressure,
+  wind,
+  date,
+}) => {
   let content = null;
 
-  if (!err && city) {
+  if (!error && city) {
     const sunriseTime = new Date(sunrise * 1000).toLocaleString();
     const sunsetTime = new Date(sunset * 1000).toLocaleString();
 
@@ -28,7 +34,7 @@ const Result = (props) => {
   }
 
   return (
-    <div className='result'>{err ? `Nie mamy w bazie ${city}` : content}</div>
+    <div className='result'>{error ? `Nie mamy w bazie ${city}` : content}</div>
   );
 };
 

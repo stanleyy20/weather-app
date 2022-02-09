@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Result from './Result';
 import Form from './Form';
@@ -6,70 +6,70 @@ import Form from './Form';
 // Klucz do API
 const APIKey = `45e2ab9f10ea6eae91f2a1780759a4fc`;
 
-class App extends Component {
-  state = {
-    value: '',
-    date: '',
-    city: '',
-    sunrise: '',
-    sunset: '',
-    temp: '',
-    pressure: '',
-    wind: '',
-    err: '',
+const App = () => {
+  const [inputValue, setInputValue] = useState('');
+  const [date, setDate] = useState('');
+  const [city, setCity] = useState('');
+  const [sunrise, setSunrise] = useState('');
+  const [sunset, setSunset] = useState('');
+  const [temp, setTemp] = useState('');
+  const [pressure, setPressure] = useState('');
+  const [wind, setWind] = useState('');
+  const [error, setError] = useState(false);
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
   };
 
-  handleInputChange = (e) => {
-    this.setState({
-      value: e.target.value,
-    });
+  const handleCitySubmit = (e) => {
+    e.preventDefault();
+    const API = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${APIKey}&units=metric`;
+    fetch(API)
+      .then((response) => {
+        if (response.ok) {
+          return response;
+        }
+        throw Error('Nie udało się wczytać danych');
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        const time = new Date().toLocaleString();
+        setError(false);
+        setDate(time);
+        setCity(inputValue);
+        setSunrise(data.sys.sunrise);
+        setSunset(data.sys.sunset);
+        setTemp(data.main.temp);
+        setPressure(data.main.pressure);
+        setWind(data.wind.speed);
+      })
+      .catch((error) => {
+        console.log(error);
+        setCity(inputValue);
+        setError(true);
+      });
   };
 
-  // prevProps i prevState to zabezpieczenie przed pętlą nieskończopności gdy użyjemy setState w componentDidMount
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.value.length === 0) return;
-    if (prevState.value !== this.state.value) {
-      const API = `https://api.openweathermap.org/data/2.5/weather?q=${this.state.value}&appid=${APIKey}&units=metric`;
-      fetch(API)
-        .then((response) => {
-          if (response.ok) {
-            return response;
-          }
-          throw Error('Nie udało się wczytać danych');
-        })
-        .then((response) => response.json())
-        .then((data) => {
-          const time = new Date().toLocaleString();
-          this.setState((prevState) => ({
-            err: false,
-            date: time,
-            city: prevState.value,
-            sunrise: data.sys.sunrise,
-            sunset: data.sys.sunset,
-            temp: data.main.temp,
-            pressure: data.main.pressure,
-            wind: data.wind.speed,
-          }));
-        })
-        .catch((err) => {
-          console.log(err);
-          this.setState((prevState) => ({
-            err: true,
-            city: prevState.value,
-          }));
-        });
-    }
-  }
-
-  render() {
-    return (
-      <div className='App'>
-        Aplikacja pogodowa
-        <Form value={this.state.value} change={this.handleInputChange} />
-        <Result weather={this.state} />
-      </div>
-    );
-  }
-}
+  return (
+    <div className='App'>
+      Aplikacja pogodowa
+      <Form
+        value={inputValue}
+        change={handleInputChange}
+        submit={handleCitySubmit}
+      />
+      <Result
+        date={date}
+        city={city}
+        sunrise={sunrise}
+        sunset={sunset}
+        pressure={pressure}
+        wind={wind}
+        temp={temp}
+        error={error}
+      />
+    </div>
+  );
+};
 
 export default App;
