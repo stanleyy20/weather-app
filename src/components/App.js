@@ -5,6 +5,7 @@ import Form from './Form';
 
 // Klucz do API
 const APIKey = `45e2ab9f10ea6eae91f2a1780759a4fc`;
+const PL_LANG = 'pl';
 
 const App = () => {
   const [inputValue, setInputValue] = useState('');
@@ -16,13 +17,15 @@ const App = () => {
   const [pressure, setPressure] = useState('');
   const [wind, setWind] = useState('');
   const [error, setError] = useState('');
+  const [description, setDecryption] = useState('');
+  const [img, setImg] = useState([]);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
 
   useEffect(() => {
-    const API = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${APIKey}&units=metric`;
+    const API = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${APIKey}&units=metric&lang=${PL_LANG}`;
     fetch(API)
       .then((response) => {
         if (response.ok) {
@@ -41,6 +44,8 @@ const App = () => {
         setTemp(data.main.temp);
         setPressure(data.main.pressure);
         setWind(data.wind.speed);
+        setDecryption(data.weather[0].description);
+        setImg(data.weather[0].icon);
       })
       .catch((error) => {
         console.log(error);
@@ -63,6 +68,8 @@ const App = () => {
         temp={temp}
         error={error}
         inputValue={inputValue}
+        img={img}
+        description={description}
       />
     </div>
   );

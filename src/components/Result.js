@@ -11,12 +11,16 @@ const Result = ({
   wind,
   date,
   inputValue,
+  img,
+  description,
 }) => {
   let content = null;
 
   if (!error && city) {
     const sunriseTime = new Date(sunrise * 1000).toLocaleString();
     const sunsetTime = new Date(sunset * 1000).toLocaleString();
+
+    const weatherIcon = `http://openweathermap.org/img/wn/${img}@2x.png`;
 
     content = (
       <React.Fragment>
@@ -30,6 +34,8 @@ const Result = ({
         <h4>Zachód słońca: {sunsetTime}</h4>
         <h4>Ciśnienie: {pressure} m/s</h4>
         <h4>Prędkość wiatru: {wind} hPa</h4>
+        <img src={weatherIcon} alt='weather-icon' />
+        <h4>{description}</h4>
       </React.Fragment>
     );
   }
