@@ -1,11 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500;700&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Ubuntu';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background: #aa4b6b; */
   background: linear-gradient(to right, #3b8d99, #6b6b83, #aa4b6b);
   min-height: 100vh;
   color: white;
@@ -13,23 +12,15 @@ body {
 }
 
 .App input {
-  border-radius: 5px;
+  border-radius: 50px;
   font-size: 20px;
   border: none;
   margin-top: 20px;
-  padding: 8px;
+  padding: 8px 15px;
 }
 
 .App input:focus {
   outline: none;
-}
-.App button {
-  margin: 20px;
-  padding: 10px 20px;
-  border: 2px solid grey;
-  background-color: #fff;
-  cursor: pointer;
-  transition: 0.3s;
 }
 
 .App button:hover {
@@ -38,5 +29,5 @@ body {
 }
 
 .App form {
-  margin-top: 20p;
+  margin-top: 20px;
 }

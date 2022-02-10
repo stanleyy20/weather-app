@@ -31,13 +31,12 @@ const Result = ({
       <React.Fragment>
         <h3> {date}</h3>
         <img src={weatherIcon} alt='weather-icon' />
-        <p>{description}</p>
-        <h4>{Math.round(temp)} &#176;C</h4>
-        {city}
+        <h3>{description}</h3>
+        <h4 className='temp'>{Math.round(temp)} &#176;C</h4>
         <h4>Wschód słońca: {sunriseTime}</h4>
         <h4>Zachód słońca: {sunsetTime}</h4>
-        <h4>Ciśnienie: {pressure} m/s</h4>
-        <h4>Prędkość wiatru: {wind} hPa</h4>
+        <h4>Ciśnienie: {pressure} hPa</h4>
+        <h4>Prędkość wiatru: {wind} m/s</h4>
       </React.Fragment>
     );
   }
