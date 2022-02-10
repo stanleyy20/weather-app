@@ -14,3 +14,10 @@
 .result h4 {
   font-weight: normal;
 }
+
+@media (max-height: 800px) {
+  .result {
+    top: 60%;
+    min-width: 70%;
+  }
+}
