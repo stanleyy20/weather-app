@@ -58,7 +58,7 @@ const App = () => {
 
   return (
     <div className='App'>
-      Aplikacja pogodowa
+      <h1>Aplikacja pogodowa</h1>
       <Form value={inputValue} change={handleInputChange} />
       <Result
         date={date}
