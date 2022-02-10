@@ -13,12 +13,17 @@ const Result = ({
   inputValue,
   img,
   description,
+  timezone,
 }) => {
   let content = null;
 
   if (!error && city) {
-    const sunriseTime = new Date(sunrise * 1000).toLocaleString();
-    const sunsetTime = new Date(sunset * 1000).toLocaleString();
+    const sunriseTime = new Date(
+      (sunrise + timezone - 3600) * 1000
+    ).toLocaleString();
+    const sunsetTime = new Date(
+      (sunset + timezone - 3600) * 1000
+    ).toLocaleString();
 
     const weatherIcon = `http://openweathermap.org/img/wn/${img}@2x.png`;
 
@@ -35,7 +40,7 @@ const Result = ({
         <h4>Ciśnienie: {pressure} m/s</h4>
         <h4>Prędkość wiatru: {wind} hPa</h4>
         <img src={weatherIcon} alt='weather-icon' />
-        <h4>{description}</h4>
+        <p>{description}</p>
       </React.Fragment>
     );
   }

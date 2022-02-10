@@ -19,6 +19,7 @@ const App = () => {
   const [error, setError] = useState('');
   const [description, setDecryption] = useState('');
   const [img, setImg] = useState([]);
+  const [timezone, setTimezone] = useState(0);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -46,6 +47,7 @@ const App = () => {
         setWind(data.wind.speed);
         setDecryption(data.weather[0].description);
         setImg(data.weather[0].icon);
+        setTimezone(data.timezone);
       })
       .catch((error) => {
         console.log(error);
@@ -70,6 +72,7 @@ const App = () => {
         inputValue={inputValue}
         img={img}
         description={description}
+        timezone={timezone}
       />
     </div>
   );
