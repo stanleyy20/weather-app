@@ -22,8 +22,8 @@
   }
 }
 
-@media (max-height: 500px) {
+@media (max-height: 600px) {
   .result {
-    margin-top: 45%;
+    top: 80%;
   }
 }
