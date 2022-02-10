@@ -98,7 +98,7 @@ const App = () => {
         img={img}
         description={description}
         timezone={timezone}
-        daily={daily}
+        // daily={daily}
       />
     </div>
   );
