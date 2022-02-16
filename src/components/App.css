@@ -15,19 +15,34 @@ body {
   border-radius: 50px;
   font-size: 20px;
   border: none;
-  margin-top: 20px;
   padding: 8px 15px;
+  margin-top: 10px;
 }
 
 .App input:focus {
   outline: none;
 }
 
-.App button:hover {
-  background-color: black;
-  color: white;
+.App form {
+  margin-top: 10px;
 }
 
-.App form {
-  margin-top: 20px;
+.App button {
+  position: absolute;
+  font-size: 20px;
+  display: inline-block;
+  padding: 0.3em 1.2em;
+  margin: 0.8em 0.1em 0.1em 0;
+  border: 0.16em solid rgba(255, 255, 255, 0);
+  border-radius: 2em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: black;
+  text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
+  text-align: center;
+  transition: all 0.2s;
+  top: 83%;
+  transform: translate(-50%, -50%);
 }
