@@ -24,13 +24,6 @@ h1 {
   font-weight: bold;
 }
 
-.deyli {
-  position: absolute;
-  left: 50%;
-  bottom: 5%;
-  transform: translate(-50%, -50%);
-}
-
 @media (max-height: 800px) {
   .result {
     top: 60%;
