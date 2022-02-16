@@ -28,7 +28,7 @@ const Result = ({
     const weatherIcon = `http://openweathermap.org/img/wn/${img}@2x.png`;
 
     content = (
-      <React.Fragment>
+      <div className='result'>
         <h3> {date}</h3>
         <img src={weatherIcon} alt='weather-icon' />
         <h3>{description}</h3>
@@ -37,7 +37,7 @@ const Result = ({
         <h4>Zachód słońca: {sunsetTime}</h4>
         <h4>Ciśnienie: {pressure} hPa</h4>
         <h4>Prędkość wiatru: {wind} m/s</h4>
-      </React.Fragment>
+      </div>
     );
   }
   let result = error ? <h3>Nie mamy w bazie {city}</h3> : content;
@@ -47,7 +47,7 @@ const Result = ({
     return <div></div>;
   }
 
-  return <div className='result'>{result}</div>;
+  return result;
 };
 
 export default Result;

@@ -20,9 +20,6 @@ const App = () => {
   const [description, setDecryption] = useState('');
   const [img, setImg] = useState([]);
   const [timezone, setTimezone] = useState(0);
-  // const [lon, setLon] = useState('');
-  // const [lat, setLat] = useState('');
-  // const [daily, setDaily] = useState([]);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -51,8 +48,6 @@ const App = () => {
         setDecryption(data.weather[0].description);
         setImg(data.weather[0].icon);
         setTimezone(data.timezone);
-        // setLat(data.coord.lat);
-        // setLon(data.coord.lon);
       })
       .catch((error) => {
         console.log(error);
@@ -60,26 +55,6 @@ const App = () => {
         setError(true);
       });
   }, [inputValue]);
-
-  // useEffect(() => {
-  //   const API = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,current,minutely,alerts&appid=${APIKey}&units=metric&lang=${PL_LANG}`;
-  //   fetch(API)
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         return response;
-  //       }
-  //       throw Error('Nie udało się wczytać danych');
-  //     })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setError(false);
-  //       setDaily(data.daily);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       setError(true);
-  //     });
-  // }, [lat]);
 
   return (
     <div className='App'>
@@ -98,7 +73,6 @@ const App = () => {
         img={img}
         description={description}
         timezone={timezone}
-        // daily={daily}
       />
     </div>
   );

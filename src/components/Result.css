@@ -24,14 +24,14 @@ h1 {
   font-weight: bold;
 }
 
-@media (max-height: 800px) {
+@media (max-height: 800px) and (orientation: portrait) {
   .result {
     top: 60%;
     min-width: 70%;
   }
 }
 
-@media (max-height: 600px) {
+@media (max-height: 600px) and (orientation: portrait) {
   .result {
     top: 90%;
   }
